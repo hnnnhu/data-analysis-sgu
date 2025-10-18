@@ -1,5 +1,4 @@
 # 📊 HỒ SƠ HỌC TẬP – PHÂN TÍCH DỮ LIỆU  
-### Huỳnh Nguyễn Ngọc Như – Sinh viên ngành Công nghệ Thông tin  
 
 ---
 
