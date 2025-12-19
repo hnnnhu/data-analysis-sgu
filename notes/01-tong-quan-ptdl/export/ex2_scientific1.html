@@ -1,1 +1,116 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ex2_scientific1 – Lab 01</title>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --card: #111827;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --code: #0f172a;
+      --accent: #60a5fa;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    header {
+      padding: 28px 20px 14px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(96,165,250,.14), transparent);
+    }
+    header h1 { margin: 0 0 6px; font-size: 22px; }
+    header p { margin: 0; color: var(--muted); }
+    main { max-width: 920px; margin: 0 auto; padding: 18px 14px 40px; }
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 16px 10px;
+      margin: 14px 0;
+      box-shadow: 0 8px 20px rgba(0,0,0,.25);
+    }
+    h2 { margin: 0 0 10px; font-size: 16px; color: #f3f4f6; }
+    .meta {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      margin-top: 10px; color: var(--muted); font-size: 12px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+    }
+    pre {
+      background: var(--code);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      overflow: auto;
+      color: #e2e8f0;
+      font-size: 13px;
+    }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    .note { color: var(--muted); font-size: 13px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 18px; text-align: center; }
+  </style>
+</head>
+<body>
+<header>
+  <h1>ex2_scientific1 – Lab 01</h1>
+  <p>Xuất HTML cho Lab 01 (môi trường Python) — file này có thể mở trực tiếp bằng trình duyệt.</p>
+  <div class="meta">
+    <span class="badge">Lab 01</span>
+    <span class="badge">Python</span>
+    <span class="badge">Jupyter / Script</span>
+  </div>
+</header>
+<main>
+  <section><h2>1) Import</h2>
+<pre><code>import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt</code></pre>
+</section><section><h2>2) Tạo dữ liệu giả lập</h2>
+<p class='note'>Sinh 1000 mẫu theo phân phối chuẩn để luyện thao tác thống kê.</p><pre><code>rng = np.random.default_rng(42)
+values = rng.normal(loc=10, scale=2, size=1000)
+values[:10]</code></pre>
+</section><section><h2>3) Thống kê mô tả</h2>
+<p class='note'>Tính count/mean/std/min/max.</p><pre><code>summary = {
+    &#x27;count&#x27;: values.size,
+    &#x27;mean&#x27;: float(values.mean()),
+    &#x27;std&#x27;: float(values.std()),
+    &#x27;min&#x27;: float(values.min()),
+    &#x27;max&#x27;: float(values.max()),
+}
+summary</code></pre>
+</section><section><h2>4) pandas DataFrame &amp; describe()</h2>
+<pre><code>df = pd.DataFrame({&#x27;value&#x27;: values})
+df.head()
 
+df.describe()</code></pre>
+</section><section><h2>5) Vẽ histogram</h2>
+<pre><code>plt.figure(figsize=(7,4))
+plt.hist(df[&#x27;value&#x27;], bins=30)
+plt.title(&#x27;Histogram of simulated values&#x27;)
+plt.xlabel(&#x27;value&#x27;)
+plt.ylabel(&#x27;frequency&#x27;)
+plt.grid(True)
+plt.show()</code></pre>
+</section><section><h2>6) Bài tập nhỏ</h2>
+<ul><li>Đổi <code>loc</code> và <code>scale</code> rồi quan sát histogram.</li><li>Tính median và percentile 25/75.</li></ul><pre><code>median = float(np.median(values))
+q25, q75 = np.percentile(values, [25, 75])
+median, float(q25), float(q75)</code></pre>
+</section>
+  <footer>Generated for learning purposes.</footer>
+</main>
+</body>
+</html>
